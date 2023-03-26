@@ -14,6 +14,7 @@ class RussianpeasantMultiplicatorTest {
                 Arguments.of(1,2,2),
                 Arguments.of(1,3,3),
                 Arguments.of(2,3,6),
+                Arguments.of(18,23,414),
                 Arguments.of(47,42,1974)
         );
     }
