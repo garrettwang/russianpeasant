@@ -6,36 +6,60 @@ import java.util.List;
 public class RussianpeasantMultiplicator {
     List<Line> russianPeasanTable = new ArrayList<>();
 
-    public int mul(int x, int y) {
-        russianPeasanTable.add(new Line(x, y));
+    public int multiplicate(int x, int y) {
+        addFirstLine(x, y);
         goToCalculate();
         return summerizeRightCoumn();
     }
 
+    private void addFirstLine(int x, int y) {
+        final var firstLine = new Line(x, y);
+        addLine(firstLine);
+    }
+
     private void goToCalculate() {
-        final Line lastLine = russianPeasanTable.get(russianPeasanTable.size() - 1);
-        if (!isCalFinished(lastLine)) {
+        final var lastLine = getLastLine();
+        if (isCalculationNotFinished(lastLine)) {
             addNewLine(lastLine);
             goToCalculate();
         }
     }
 
-    private void addNewLine(Line lastLine) {
-        russianPeasanTable.add(new Line(lastLine.x() / 2, lastLine.y() * 2));
+    private Line getLastLine() {
+        return russianPeasanTable.get(russianPeasanTable.size() - 1);
     }
 
-    private static boolean isCalFinished(Line lastLine) {
-        return lastLine.x() == 1;
+    private void addNewLine(Line lastLine) {
+        int newLeftNumber = divideByTwo(lastLine.leftNumber());
+        int newRightNumber = doubleValue(lastLine.rightNumber());
+        final var newLine = new Line(newLeftNumber, newRightNumber);
+        addLine(newLine);
+    }
+
+    private static int doubleValue(int rightNumber) {
+        return rightNumber * 2;
+    }
+
+    private static int divideByTwo(int leftNumber) {
+        return leftNumber / 2;
+    }
+
+    private void addLine(Line newLine) {
+        russianPeasanTable.add(newLine);
+    }
+
+    private boolean isCalculationNotFinished(Line lastLine) {
+        return lastLine.leftNumber() != 1;
     }
 
     private int summerizeRightCoumn() {
         return russianPeasanTable.stream()
                 .filter(RussianpeasantMultiplicator::leftValueNotEven)
-                .mapToInt(Line::y)
+                .mapToInt(Line::rightNumber)
                 .sum();
     }
 
     private static boolean leftValueNotEven(Line line) {
-        return line.x() % 2 != 0;
+        return line.leftNumber() % 2 != 0;
     }
 }

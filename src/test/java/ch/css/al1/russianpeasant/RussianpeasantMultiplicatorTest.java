@@ -23,7 +23,7 @@ class RussianpeasantMultiplicatorTest {
     void testMultiplicator(int x, int y, int expected) {
         RussianpeasantMultiplicator testee = new RussianpeasantMultiplicator();
 
-        int actual = testee.mul(x,y);
+        int actual = testee.multiplicate(x,y);
 
         assertThat(actual).isEqualTo(expected);
     }
