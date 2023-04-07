@@ -12,6 +12,10 @@ public class RussianpeasantMultiplicator {
         return summerizeRightCoumn();
     }
 
+    public CalculationProcess getMultiplicateResultTable(int x, int y) {
+        return new CalculationProcess(russianPeasanTable,multiplicate(x, y));
+    }
+
     private void addFirstLine(int x, int y) {
         final var firstLine = new Line(x, y);
         addLine(firstLine);
@@ -62,4 +66,5 @@ public class RussianpeasantMultiplicator {
     private static boolean leftValueNotEven(Line line) {
         return line.leftNumber() % 2 != 0;
     }
+
 }

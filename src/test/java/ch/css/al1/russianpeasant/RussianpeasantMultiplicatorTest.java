@@ -1,5 +1,6 @@
 package ch.css.al1.russianpeasant;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -28,4 +29,12 @@ class RussianpeasantMultiplicatorTest {
         assertThat(actual).isEqualTo(expected);
     }
 
+    @Test
+    void getResultTable() {
+        RussianpeasantMultiplicator testee = new RussianpeasantMultiplicator();
+
+        var actual = testee.getMultiplicateResultTable(12,23);
+
+        assertThat(actual.russianPeasantTable()).hasSize(4);
+    }
 }
