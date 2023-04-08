@@ -24,7 +24,7 @@ public class RussianpeasantMultiplicator {
     private void goToCalculate() {
         final var lastLine = getLastLine();
         if (isCalculationNotFinished(lastLine)) {
-            addNewLine(lastLine);
+            produceNewLine(lastLine);
             goToCalculate();
         }
     }
@@ -33,11 +33,10 @@ public class RussianpeasantMultiplicator {
         return russianPeasanTable.get(russianPeasanTable.size() - 1);
     }
 
-    private void addNewLine(Line lastLine) {
+    private void produceNewLine(Line lastLine) {
         int newLeftNumber = divideByTwo(lastLine.leftNumber());
         int newRightNumber = doubleValue(lastLine.rightNumber());
-        final var newLine = new Line(newLeftNumber, newRightNumber);
-        addLine(newLine);
+        addLine(new Line(newLeftNumber, newRightNumber));
     }
 
     private static int doubleValue(int rightNumber) {
